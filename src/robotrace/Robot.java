@@ -37,7 +37,7 @@ class Robot {
      */
     public void draw(GL2 gl, GLU glu, GLUT glut, float tAnim) {
         gl.glPushMatrix();
-        gl.glColor3d(0.5,0.5,0.8);
+        gl.glColor3d(1,0.5,0.5);
         gl.glTranslated(0,0,1.35);
         glut.glutSolidSphere(0.45, 45, 45);
         gl.glColor3d(0,0,0);
