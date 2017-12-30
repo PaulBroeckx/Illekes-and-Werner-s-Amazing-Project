@@ -35,8 +35,8 @@ abstract class RaceTrack {
      * Use this method to find the position of a robot on the track.
      */
     public Vector getLanePoint(int lane, double t){
-
-        return Vector.O;
+        Vector v = new Vector (0,0,0);
+        return v;
 
     }
     
@@ -45,8 +45,8 @@ abstract class RaceTrack {
      * Use this method to find the orientation of a robot on the track.
      */
     public Vector getLaneTangent(int lane, double t){
-        
-        return Vector.O;
+        Vector v = new Vector (0,0,0);
+        return v;
 
     }
     
