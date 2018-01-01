@@ -6,7 +6,7 @@ package robotrace;
 class Camera {
 
     /** The position of the camera. */
-    public Vector eye = new Vector(0, 0, 8f);
+    public Vector eye = new Vector(3f, 6f, 5f);
 
     /** The point to which the camera is looking. */
     public Vector center = Vector.O;
