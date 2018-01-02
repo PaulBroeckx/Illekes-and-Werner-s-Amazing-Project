@@ -35,9 +35,21 @@ abstract class RaceTrack {
      * Use this method to find the position of a robot on the track.
      */
     public Vector getLanePoint(int lane, double t){
-        Vector v = new Vector (0,0,0);
+        Vector v = new Vector (0,0,1);
+        if (lane == 1){
+            v.x = 10.61*Math.cos(2*t*Math.PI);
+            v.y = 14.61*Math.sin(2*t*Math.PI);
+        } else if (lane == 2){
+            v.x = 11.83*Math.cos(2*t*Math.PI);
+            v.y = 15.83*Math.sin(2*t*Math.PI);            
+        } else if (lane == 3){
+            v.x = 13.05*Math.cos(2*t*Math.PI);
+            v.y = 17.05*Math.sin(2*t*Math.PI);            
+        } else if (lane == 4){
+            v.x = 14.27*Math.cos(2*t*Math.PI);
+            v.y = 18.27*Math.sin(2*t*Math.PI);            
+        }
         return v;
-
     }
     
     /**
@@ -46,8 +58,20 @@ abstract class RaceTrack {
      */
     public Vector getLaneTangent(int lane, double t){
         Vector v = new Vector (0,0,0);
+        if (lane == 1){
+            v.x = -2*Math.PI*10.61*Math.sin(2*t*Math.PI);
+            v.y = 2*Math.PI*14.61*Math.cos(2*t*Math.PI);
+        } else if (lane == 2){
+            v.x = -2*Math.PI*11.83*Math.sin(2*t*Math.PI);
+            v.y = 2*Math.PI*15.83*Math.cos(2*t*Math.PI);            
+        } else if (lane == 3){
+            v.x = -2*Math.PI*13.05*Math.sin(2*t*Math.PI);
+            v.y = 2*Math.PI*17.05*Math.cos(2*t*Math.PI);            
+        } else if (lane == 4){
+            v.x = -2*Math.PI*14.27*Math.sin(2*t*Math.PI);
+            v.y = 2*Math.PI*18.27*Math.cos(2*t*Math.PI);            
+        }
         return v;
-
     }
     
     

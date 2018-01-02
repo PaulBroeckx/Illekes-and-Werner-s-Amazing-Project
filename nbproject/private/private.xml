@@ -7,7 +7,12 @@
         </group>
         <group name="Group 20171222-10:50:11">
             <file>file:/C:/Users/s168684/Documents/GitHub/Illekes-and-Werner-s-Amazing-Project/src/robotrace/Robot.java</file>
+            <file>file:/C:/Users/s168684/Documents/GitHub/Illekes-and-Werner-s-Amazing-Project/src/robotrace/BezierTrack.java</file>
             <file>file:/C:/Users/s168684/Documents/GitHub/Illekes-and-Werner-s-Amazing-Project/src/robotrace/RobotRace.java</file>
+            <file>file:/C:/Users/s168684/Documents/GitHub/Illekes-and-Werner-s-Amazing-Project/src/robotrace/Camera.java</file>
+            <file>file:/C:/Users/s168684/Documents/GitHub/Illekes-and-Werner-s-Amazing-Project/src/robotrace/Material.java</file>
+            <file>file:/C:/Users/s168684/Documents/GitHub/Illekes-and-Werner-s-Amazing-Project/src/robotrace/RaceTrack.java</file>
+            <file>file:/C:/Users/s168684/Documents/GitHub/Illekes-and-Werner-s-Amazing-Project/src/robotrace/ParametricTrack.java</file>
         </group>
     </open-files>
 </project-private>
