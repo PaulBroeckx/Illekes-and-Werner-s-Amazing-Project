@@ -65,7 +65,7 @@ class Robot {
  
 
     public void drawLeftLeg(GL2 gl, GLU glu, GLUT glut, float tAnim){
-        gl.glTranslated(1.5,0,-0.50);
+        gl.glTranslated(1.5,0,-1.50);
         gl.glRotated(90, 0, 0, 0);
         gl.glColor3d(0.5,0.5,0.5);
         glut.glutSolidCylinder(0.05, 0.30, 5, 15);

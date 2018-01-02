@@ -30,19 +30,45 @@ abstract class RaceTrack {
         gl.glBegin(GL_TRIANGLE_STRIP);
             int numberOfVectors = 150;
             for(int j = 1; j <= 4; j ++){
+                double t = 0;
+                gl.glColor3d(0.2,0,(1.0/j));
+                    for(int i = 0; i <= numberOfVectors; i ++){
+                        t = t + (1.0/numberOfVectors);
+                        Vector point = getPoint(t);
+                        gl.glVertex3d(point.x() + (j-1)*laneWidth*Math.cos(2*t*Math.PI),
+                                      point.y() + (j-1)*laneWidth*Math.sin(2*t*Math.PI),
+                                      1); 
+                        gl.glVertex3d(point.x() + j*laneWidth*Math.cos(2*t*Math.PI),
+                                      point.y() + j*laneWidth*Math.sin(2*t*Math.PI),
+                                      1);
+                }  
+            }
+            //outerrim 
             double t = 0;
-            gl.glColor3d(0.2,0,(1.0/j));
+            gl.glColor3d(0.2,0,0.25);
                 for(int i = 0; i <= numberOfVectors; i ++){
                     t = t + (1.0/numberOfVectors);
                     Vector point = getPoint(t);
-                    gl.glVertex3d(point.x() + (j-1)*laneWidth*Math.cos(2*t*Math.PI),
-                                  point.y() + (j-1)*laneWidth*Math.sin(2*t*Math.PI),
+                    gl.glVertex3d(point.x() + 4*laneWidth*Math.cos(2*t*Math.PI),
+                                  point.y() + 4*laneWidth*Math.sin(2*t*Math.PI),
                                   1); 
-                    gl.glVertex3d(point.x() + j*laneWidth*Math.cos(2*t*Math.PI),
-                                  point.y() + j*laneWidth*Math.sin(2*t*Math.PI),
-                                  1);
-                }  
-            }
+                    gl.glVertex3d(point.x() + 4*laneWidth*Math.cos(2*t*Math.PI),
+                                  point.y() + 4*laneWidth*Math.sin(2*t*Math.PI),
+                                  -1);
+             }  
+            //innerrim
+            t = 0;
+            gl.glColor3d(0.2,0,1);
+                for(int i = 0; i <= numberOfVectors; i ++){
+                    t = t + (1.0/numberOfVectors);
+                    Vector point = getPoint(t);
+                    gl.glVertex3d(point.x(),
+                                  point.y(),
+                                  1); 
+                    gl.glVertex3d(point.x(),
+                                  point.y(),
+                                  -1);
+             }  
         gl.glEnd();
     }
     
