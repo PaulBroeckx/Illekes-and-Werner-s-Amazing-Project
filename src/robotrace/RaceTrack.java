@@ -29,14 +29,20 @@ abstract class RaceTrack {
     public void draw(GL2 gl, GLU glu, GLUT glut) {
         gl.glBegin(GL_TRIANGLE_STRIP);
             int numberOfVectors = 150;
-            for(int j = 0; j <= 4; j ++){
-                for(int i = 0; i <= 150; i ++){
-                    double t = i + (1/numberOfVectors);
+            gl.glColor3d(1,0.5,0.5);
+            //for(int j = 1; j <= 4; j ++){
+            double t = 0;
+                for(int i = 0; i <= numberOfVectors; i ++){
+                    t = t + (1.0/numberOfVectors);
                     Vector point = getPoint(t);
-                
-                
+                    gl.glVertex3d(point.x(),
+                                  point.y(),
+                                  1); 
+                    gl.glVertex3d(point.x() + laneWidth*Math.cos(2*t*Math.PI),
+                                  point.y() + laneWidth*Math.sin(2*t*Math.PI),
+                                  1);
                 }  
-            }
+           // }
         gl.glEnd();
     }
     
