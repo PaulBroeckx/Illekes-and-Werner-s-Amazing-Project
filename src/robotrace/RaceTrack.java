@@ -27,7 +27,17 @@ abstract class RaceTrack {
      * Draws this track, based on the control points.
      */
     public void draw(GL2 gl, GLU glu, GLUT glut) {
-        
+        gl.glBegin(GL_TRIANGLE_STRIP);
+            int numberOfVectors = 150;
+            for(int j = 0; j <= 4; j ++){
+                for(int i = 0; i <= 150; i ++){
+                    double t = i + (1/numberOfVectors);
+                    Vector point = getPoint(t);
+                
+                
+                }  
+            }
+        gl.glEnd();
     }
     
     /**
