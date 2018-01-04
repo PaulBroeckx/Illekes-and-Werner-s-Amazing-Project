@@ -27,19 +27,8 @@ abstract class RaceTrack {
      * Draws this track, based on the control points.
      */
     public void draw(GL2 gl, GLU glu, GLUT glut) {
-        gl.glColor3f(0f, 0f, 0f);
         Textures.track.bind(gl);
         Textures.track.enable(gl);
-        gl.glBegin(GL_QUADS);
-        gl.glTexCoord2d(0, 0);
-        gl.glVertex3d(0, 0, 0);
-        gl.glTexCoord2d(1, 0);
-        gl.glVertex3d(1, 0, 0);
-        gl.glTexCoord2d(1, 1);
-        gl.glVertex3d(1, 1, 0);
-        gl.glTexCoord2d(0, 1);
-        gl.glVertex3d(0, 1, 0);
-        gl.glEnd(); 
         
         gl.glBegin(GL_TRIANGLE_STRIP);
             int numberOfVectors = 150;
