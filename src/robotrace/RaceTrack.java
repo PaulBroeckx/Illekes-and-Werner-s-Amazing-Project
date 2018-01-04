@@ -27,6 +27,20 @@ abstract class RaceTrack {
      * Draws this track, based on the control points.
      */
     public void draw(GL2 gl, GLU glu, GLUT glut) {
+        gl.glColor3f(0f, 0f, 0f);
+        Textures.track.bind(gl);
+        Textures.track.enable(gl);
+        gl.glBegin(GL_QUADS);
+        gl.glTexCoord2d(0, 0);
+        gl.glVertex3d(0, 0, 0);
+        gl.glTexCoord2d(1, 0);
+        gl.glVertex3d(1, 0, 0);
+        gl.glTexCoord2d(1, 1);
+        gl.glVertex3d(1, 1, 0);
+        gl.glTexCoord2d(0, 1);
+        gl.glVertex3d(0, 1, 0);
+        gl.glEnd(); 
+        
         gl.glBegin(GL_TRIANGLE_STRIP);
             int numberOfVectors = 150;
             for(int j = 1; j <= 4; j ++){
@@ -35,23 +49,35 @@ abstract class RaceTrack {
                     for(int i = 0; i <= numberOfVectors; i ++){
                         t = t + (1.0/numberOfVectors);
                         Vector point = getPoint(t);
+                        gl.glTexCoord2d(0, 0);
                         gl.glVertex3d(point.x() + (j-1)*laneWidth*Math.cos(2*t*Math.PI),
                                       point.y() + (j-1)*laneWidth*Math.sin(2*t*Math.PI),
                                       1); 
+                        gl.glTexCoord2d(1, 1);
                         gl.glVertex3d(point.x() + j*laneWidth*Math.cos(2*t*Math.PI),
                                       point.y() + j*laneWidth*Math.sin(2*t*Math.PI),
                                       1);
                 }  
             }
-            //outerrim 
+        gl.glEnd();
+        
+            //outerrim
+        Textures.brick.bind(gl);
+        Textures.brick.enable(gl);
+        //gl.glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+        //gl.glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+        
+        gl.glBegin(GL_TRIANGLE_STRIP);
             double t = 0;
             gl.glColor3d(0.2,0,0.25);
                 for(int i = 0; i <= numberOfVectors; i ++){
                     t = t + (1.0/numberOfVectors);
                     Vector point = getPoint(t);
+                    gl.glTexCoord2d(0, 0);
                     gl.glVertex3d(point.x() + 4*laneWidth*Math.cos(2*t*Math.PI),
                                   point.y() + 4*laneWidth*Math.sin(2*t*Math.PI),
                                   1); 
+                    gl.glTexCoord2d(1, 1);
                     gl.glVertex3d(point.x() + 4*laneWidth*Math.cos(2*t*Math.PI),
                                   point.y() + 4*laneWidth*Math.sin(2*t*Math.PI),
                                   -1);
@@ -62,9 +88,11 @@ abstract class RaceTrack {
                 for(int i = 0; i <= numberOfVectors; i ++){
                     t = t + (1.0/numberOfVectors);
                     Vector point = getPoint(t);
+                    gl.glTexCoord2d(0, 0);
                     gl.glVertex3d(point.x(),
                                   point.y(),
                                   1); 
+                    gl.glTexCoord2d(1, 1);
                     gl.glVertex3d(point.x(),
                                   point.y(),
                                   -1);
