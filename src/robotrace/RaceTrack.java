@@ -29,6 +29,8 @@ abstract class RaceTrack {
     public void draw(GL2 gl, GLU glu, GLUT glut) {
         Textures.track.bind(gl);
         Textures.track.enable(gl);
+        //gl.glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+        //gl.glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
         
         gl.glBegin(GL_TRIANGLE_STRIP);
             int numberOfVectors = 150;
@@ -72,8 +74,8 @@ abstract class RaceTrack {
         //outerrim
         Textures.brick.bind(gl);
         Textures.brick.enable(gl);
-        //gl.glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-        //gl.glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+        gl.glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+        gl.glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
         
         gl.glBegin(GL_TRIANGLE_STRIP);
             double t = 0;
