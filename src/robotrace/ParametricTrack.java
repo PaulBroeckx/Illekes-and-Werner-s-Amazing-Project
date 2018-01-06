@@ -9,7 +9,7 @@ public class ParametricTrack extends RaceTrack {
     @Override
     protected Vector getPoint(double t) {
         Vector v = new Vector(10*Math.cos(2*t*Math.PI), 
-        14*Math.sin(2*t*Math.PI), 1); //wiskunde is goed, java hoogstwaarschijnlijk
+        14*Math.sin(2*t*Math.PI), 1); 
         return v;
 
     }

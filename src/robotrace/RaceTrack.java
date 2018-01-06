@@ -34,7 +34,7 @@ abstract class RaceTrack {
         
         gl.glBegin(GL_TRIANGLE_STRIP);
             int numberOfVectors = 150;
-            for(int j = 1; j <= 4; j ++){
+            for(int j = -1; j <= 2; j ++){
                 double t = 0;
                 gl.glColor3d(0.2,0,(1.0/j));
                     for(int i = 0; i <= numberOfVectors; i ++){
@@ -51,26 +51,7 @@ abstract class RaceTrack {
                 }  
             }
         gl.glEnd();
-        
-        
-        /*gl.glBegin(GL_TRIANGLE_STRIP);
-            int numberOfVectors = 150;
-            double t = 0;
-          //gl.glColor3d(0.2,0,(1.0/j));
-            for(int i = 0; i <= numberOfVectors; i ++){
-                t = t + (1.0/numberOfVectors);
-                Vector point = getPoint(t);
-                gl.glTexCoord2d(0, 0);
-                gl.glVertex3d(point.x(),
-                              point.y(),
-                              1); 
-                gl.glTexCoord2d(1, 1);
-                gl.glVertex3d(point.x() + 4*laneWidth*Math.cos(2*t*Math.PI),
-                              point.y() + 4*laneWidth*Math.sin(2*t*Math.PI),
-                              1);
-                    }  
-        gl.glEnd();
-        */
+
         //outerrim
         Textures.brick.bind(gl);
         Textures.brick.enable(gl);
@@ -84,14 +65,14 @@ abstract class RaceTrack {
                     t = t + (1.0/numberOfVectors);
                     Vector point = getPoint(t);
                     gl.glTexCoord2d(0, 0);
-                    gl.glVertex3d(point.x() + 4*laneWidth*Math.cos(2*t*Math.PI),
-                                  point.y() + 4*laneWidth*Math.sin(2*t*Math.PI),
+                    gl.glVertex3d(point.x() + 2*laneWidth*Math.cos(2*t*Math.PI),
+                                  point.y() + 2*laneWidth*Math.sin(2*t*Math.PI),
                                   1); 
                     gl.glTexCoord2d(1, 1);
-                    gl.glVertex3d(point.x() + 4*laneWidth*Math.cos(2*t*Math.PI),
-                                  point.y() + 4*laneWidth*Math.sin(2*t*Math.PI),
+                    gl.glVertex3d(point.x() + 2*laneWidth*Math.cos(2*t*Math.PI),
+                                  point.y() + 2*laneWidth*Math.sin(2*t*Math.PI),
                                   -1);
-             }  
+                }  
             //innerrim
             t = 0;
             gl.glColor3d(0.2,0,1);
@@ -99,14 +80,14 @@ abstract class RaceTrack {
                     t = t + (1.0/numberOfVectors);
                     Vector point = getPoint(t);
                     gl.glTexCoord2d(0, 0);
-                    gl.glVertex3d(point.x(),
-                                  point.y(),
+                    gl.glVertex3d(point.x() - 2*laneWidth*Math.cos(2*t*Math.PI),
+                                  point.y() - 2*laneWidth*Math.sin(2*t*Math.PI),
                                   1); 
                     gl.glTexCoord2d(1, 1);
-                    gl.glVertex3d(point.x(),
-                                  point.y(),
+                    gl.glVertex3d(point.x() - 2*laneWidth*Math.cos(2*t*Math.PI),
+                                  point.y() - 2*laneWidth*Math.sin(2*t*Math.PI),
                                   -1);
-             }  
+                }  
         gl.glEnd();
     }
     
@@ -117,17 +98,17 @@ abstract class RaceTrack {
     public Vector getLanePoint(int lane, double t){
         Vector v = new Vector (0,0,1);
         if (lane == 1){
-            v.x = 10.61*Math.cos(2*t*Math.PI);
-            v.y = 14.61*Math.sin(2*t*Math.PI);
+            v.x = getPoint(t).x - 1.5*laneWidth*Math.cos(2*t*Math.PI);
+            v.y = getPoint(t).y - 1.5*laneWidth*Math.sin(2*t*Math.PI);
         } else if (lane == 2){
-            v.x = 11.83*Math.cos(2*t*Math.PI);
-            v.y = 15.83*Math.sin(2*t*Math.PI);            
+            v.x = getPoint(t).x - 0.5*laneWidth*Math.cos(2*t*Math.PI);
+            v.y = getPoint(t).y - 0.5*laneWidth*Math.sin(2*t*Math.PI);        
         } else if (lane == 3){
-            v.x = 13.05*Math.cos(2*t*Math.PI);
-            v.y = 17.05*Math.sin(2*t*Math.PI);            
+            v.x = getPoint(t).x + 0.5*laneWidth*Math.cos(2*t*Math.PI);
+            v.y = getPoint(t).y + 0.5*laneWidth*Math.sin(2*t*Math.PI);            
         } else if (lane == 4){
-            v.x = 14.27*Math.cos(2*t*Math.PI);
-            v.y = 18.27*Math.sin(2*t*Math.PI);            
+            v.x = getPoint(t).x + 1.5*laneWidth*Math.cos(2*t*Math.PI);
+            v.y = getPoint(t).y + 1.5*laneWidth*Math.sin(2*t*Math.PI);            
         }
         return v;
     }
@@ -137,20 +118,7 @@ abstract class RaceTrack {
      * Use this method to find the orientation of a robot on the track.
      */
     public Vector getLaneTangent(int lane, double t){
-        Vector v = new Vector (0,0,0);
-        if (lane == 1){
-            v.x = -2*Math.PI*10.61*Math.sin(2*t*Math.PI);
-            v.y = 2*Math.PI*14.61*Math.cos(2*t*Math.PI);
-        } else if (lane == 2){
-            v.x = -2*Math.PI*11.83*Math.sin(2*t*Math.PI);
-            v.y = 2*Math.PI*15.83*Math.cos(2*t*Math.PI);            
-        } else if (lane == 3){
-            v.x = -2*Math.PI*13.05*Math.sin(2*t*Math.PI);
-            v.y = 2*Math.PI*17.05*Math.cos(2*t*Math.PI);            
-        } else if (lane == 4){
-            v.x = -2*Math.PI*14.27*Math.sin(2*t*Math.PI);
-            v.y = 2*Math.PI*18.27*Math.cos(2*t*Math.PI);            
-        }
+        Vector v = getTangent(t);
         return v;
     }
     
