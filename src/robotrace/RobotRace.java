@@ -3,6 +3,7 @@ package robotrace;
 import static com.jogamp.opengl.GL2.*;
 import static robotrace.ShaderPrograms.*;
 import static robotrace.Textures.*;
+import java.util.*;
 
 /**
  * Handles all of the RobotRace graphics functionality,
@@ -80,26 +81,6 @@ public class RobotRace extends Base {
         // Create a new array of four robots
         robots = new Robot[4];
         
-        // Initialize robot 0
-        robots[0] = new Robot(Material.GOLD
-                
-        );
-        
-        // Initialize robot 1
-        robots[1] = new Robot(Material.SILVER
-              
-        );
-        
-        // Initialize robot 2
-        robots[2] = new Robot(Material.WOOD
-              
-        );
-
-        // Initialize robot 3
-        robots[3] = new Robot(Material.ORANGE
-                
-        );
-        
         // Initialize the camera
         camera = new Camera();
         
@@ -119,6 +100,23 @@ public class RobotRace extends Base {
         
         // Initialize the terrain
         terrain = new Terrain();
+                
+        // Initialize robot 0
+        robots[0] = new Robot(Material.GOLD);
+        Vector v = raceTracks[0].getLanePoint(1,0);
+        
+        // Initialize robot 1
+        robots[1] = new Robot(Material.SILVER);
+        robots[1].position = raceTracks[0].getLanePoint(2,0);  
+        
+        // Initialize robot 2
+        robots[2] = new Robot(Material.WOOD);
+        robots[2].position = raceTracks[0].getLanePoint(3,0);  
+        
+        // Initialize robot 3
+        robots[3] = new Robot(Material.ORANGE);
+        robots[3].position = raceTracks[0].getLanePoint(4,0); 
+        
     }
     
     /**
@@ -213,8 +211,11 @@ public class RobotRace extends Base {
         
         // Draw the (first) robot.
         gl.glUseProgram(robotShader.getProgramID()); 
-        robots[0].draw(gl, glu, glut, 0);
-        
+        for(int x = 0; x < 4; x ++){
+            robots[x].position = raceTracks[gs.trackNr].getLanePoint((x+1),(gs.tAnim/3));
+            robots[x].direction = raceTracks[gs.trackNr].getLaneTangent((x+1),(gs.tAnim/3));
+            robots[x].draw(gl, glu, glut, gs.tAnim);
+        }
         
         // Draw the race track.
         gl.glUseProgram(trackShader.getProgramID());
