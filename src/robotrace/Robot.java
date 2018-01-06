@@ -38,6 +38,7 @@ class Robot {
     public void draw(GL2 gl, GLU glu, GLUT glut, float tAnim) {
         gl.glPushMatrix();
         //body and head
+        gl.glTranslated(0.5,0.5,0);
         gl.glColor3d(1,0.5,0.5);
         gl.glTranslated(0,0,1.35);
         glut.glutSolidSphere(0.45, 45, 45);
@@ -51,7 +52,8 @@ class Robot {
         gl.glColor3d(0.5,0.5,0.8);
         glut.glutSolidCylinder(0.15, 0.40, 15, 40);
         glut.glutSolidSphere(0.15, 15, 15);
-        gl.glTranslated(0,0,0.75);
+        //back to (0,0,0)
+        gl.glTranslated(0,0,-0.60);
         //left leg
         drawLeftLeg(gl,glu,glut,tAnim);
         //right leg
@@ -65,23 +67,56 @@ class Robot {
  
 
     public void drawLeftLeg(GL2 gl, GLU glu, GLUT glut, float tAnim){
-        gl.glTranslated(1.5,0,-1.50);
-        gl.glRotated(90, 0, 0, 0);
-        gl.glColor3d(0.5,0.5,0.5);
-        glut.glutSolidCylinder(0.05, 0.30, 5, 15);
- 
-        gl.glRotated(0, 0, 0, 0);
+        gl.glTranslated(-0.06, 0, 0.50);
+        gl.glRotated(180, 0, 0, 0);
+        gl.glColor3d(0.3,0.3,0.8);
+        glut.glutSolidCylinder(0.05, 0.20, 5, 15);
+        gl.glTranslated(0,0,0.20);
+        gl.glColor3d(1,0.5,0.5);
+        glut.glutSolidCylinder(0.05, 0.20, 5, 15);
+        gl.glTranslated(0,0,-0.20);
+        gl.glRotated(-180, 0, 0, 0);
+        gl.glTranslated(0.06, 0, -0.50);
     }
 
     public void drawRightLeg(GL2 gl, GLU glu, GLUT glut, float tAnim){
-
+        gl.glTranslated(0.06, 0, 0.50);
+        gl.glRotated(180, 0, 0, 0);
+        gl.glColor3d(0.3,0.3,0.8);
+        glut.glutSolidCylinder(0.05, 0.20, 5, 15);
+        gl.glTranslated(0,0,0.20);
+        gl.glColor3d(1,0.5,0.5);
+        glut.glutSolidCylinder(0.05, 0.20, 5, 15);
+        gl.glTranslated(0,0,-0.20);
+        gl.glRotated(-180, 0, 0, 0);
+        gl.glTranslated(-0.06, 0, -0.50);
     }
 
     public void drawLeftArm(GL2 gl, GLU glu, GLUT glut, float tAnim){
-
+        gl.glTranslated(-0.16,0,0.87);
+        gl.glRotated(180, 0, 0, 0);
+        gl.glColor3d(0.5,0.5,0.8);
+        glut.glutSolidCylinder(0.05, 0.20, 5, 15);
+        gl.glTranslated(0,0,0.20);
+        //gl.glRotated(0, 0, 0, 0);
+        gl.glColor3d(1,0.5,0.5);
+        glut.glutSolidCylinder(0.05, 0.20, 5, 15);
+        gl.glTranslated(0,0,-0.20);
+        gl.glRotated(-180, 0, 0, 0);
+        gl.glTranslated(0.16,0,-0.87);
     }
 
     public void drawRightArm(GL2 gl, GLU glu, GLUT glut, float tAnim){
-
+        gl.glTranslated(0.16,0,0.87);
+        gl.glRotated(180, 0, 0, 0);
+        gl.glColor3d(0.5,0.5,0.8);
+        glut.glutSolidCylinder(0.05, 0.20, 5, 15);
+        gl.glTranslated(0,0,0.20);
+        //gl.glRotated(0, 0, 0, 0);
+        gl.glColor3d(1,0.5,0.5);
+        glut.glutSolidCylinder(0.05, 0.20, 5, 15);
+        gl.glTranslated(0,0,-0.20);
+        gl.glRotated(-180, 0, 0, 0);
+        gl.glTranslated(-0.16,0,-0.87);
     }
 }
