@@ -7,6 +7,7 @@ import static com.jogamp.opengl.GL.*;
 import static com.jogamp.opengl.GL2ES3.GL_QUADS;
 import static com.jogamp.opengl.fixedfunc.GLLightingFunc.*;
 
+
 /**
 * Represents a Robot, to be implemented according to the Assignments.
 */
@@ -38,7 +39,12 @@ class Robot {
     public void draw(GL2 gl, GLU glu, GLUT glut, float tAnim) {
         gl.glPushMatrix();
         gl.glTranslated(this.position.x, this.position.y, this.position.z);
-        gl.glRotated(0, 0, (this.direction.x/this.direction.y), 0); 
+        //angle between current direction and direction at start.
+        double dot = this.direction.x*0 + this.direction.y*28.0*Math.PI;      //dot product
+        double det = this.direction.x*28.0*Math.PI - 0*this.direction.y;      //determinant
+        double angle = Math.atan2(det, dot);  //atan2(y, x) or atan2(sin, cos)
+        double a = (angle/(2*Math.PI))*360;
+        gl.glRotated(a, 0, 0, -1); 
         gl.glColor3d(1,0.5,0.5);
         gl.glTranslated(0,0,1.35);
         glut.glutSolidSphere(0.45, 45, 45);
